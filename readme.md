@@ -1,5 +1,6 @@
 ### Little Big Web Service 
 First touch of React + Firebase web service project.
+
 Stack: React + Webpack & npm + JS & Babel + CSS + SAAS + Jenkins CI
 
 ### Build project
