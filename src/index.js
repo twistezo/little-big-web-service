@@ -1,21 +1,14 @@
-import 'babel-polyfill';
-
 import React from 'react';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux';
-import App from './app/containers/App';
-import configureStore from './app/store/configureStore';
+import ReactDOM from 'react-dom';
 import {Router, Route, browserHistory} from 'react-router';
 
-import 'todomvc-app-css/index.css';
+import {Hello} from './app/hello';
 
-const store = configureStore();
+import './index.scss';
 
-render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}/>
-    </Router>
-  </Provider>,
+ReactDOM.render(
+  <Router history={browserHistory}>
+    <Route path="/" component={Hello}/>
+  </Router>,
   document.getElementById('root')
 );
