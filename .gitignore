@@ -387,3 +387,4 @@ fabric.properties
 # End of https://www.gitignore.io/api/node,bower,angular,webstorm,firebase,sublimetext,reactnative,visualstudiocode
 
 .tmp
+yarn.lock
