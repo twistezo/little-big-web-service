@@ -76,6 +76,9 @@
       "browser": true,
       "jasmine": true
     },
+    "rules": {
+      "linebreak-style": 0
+    },
     "extends": [
       "xo-react/space",
       "xo-space/esnext"
