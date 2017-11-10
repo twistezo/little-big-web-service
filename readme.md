@@ -1,25 +1,41 @@
 ### Little Big Web Service 
-First touch of React + Firebase web service project.
+[![Build Status](https://travis-ci.org/twistezo/little-big-web-service.svg?branch=master)](https://travis-ci.org/twistezo/little-big-web-service)
 
-Stack: React + Webpack & npm + JS & Babel + CSS + SAAS + Jenkins CI
+### Description
+React + Firebase web service
 
-### Build project
-use `npm install` or `yarn`
+### Tools
+React 16 (JS + Babel), Bootstrap 4, Firebase, Webpack, Gulp, npm, Travis CI
 
-### NPM scripts
+### Requirements
+npm or yarn, gulp-cli
+
+### Build, run, test, deploy
 ```
-npm run build to build an optimized version of your application in /dist
-npm run serve to launch a browser sync server on your source files
-npm run serve:dist to launch a server on your optimized application
-npm run test to launch your unit tests with Karma
-npm run test:auto to launch your unit tests with Karma in watch mode
+build:
+npm install or yarn
+
+run: 
+gulp serve
+
+test:
+gulp test
+
+deploy:
+firebase deploy
 ```
 
-### Gulp scripts
+### Gulp & npm all scripts info
 ```
 gulp or gulp build
 gulp serve
 gulp serve:dist
 gulp test
 gulp test:auto
+
+npm run build 
+npm run serve 
+npm run serve:dist
+npm run test // with Karma
+npm run test:auto // with Karma in watch mode
 ```
