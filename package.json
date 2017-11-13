@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bootstrap": "^4.0.0-beta.2",
     "classnames": "^2.2.5",
     "es6-shim": "^0.35.3",
     "react": "^15.4.2",
