@@ -27,6 +27,12 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {},
       debug: true
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default']
     })
   ],
   devtool: 'source-map',

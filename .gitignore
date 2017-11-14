@@ -388,3 +388,4 @@ fabric.properties
 
 .tmp
 yarn.lock
+package-lock.json

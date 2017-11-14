@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "bootstrap": "^4.0.0-beta.2",
     "classnames": "^2.2.5",
     "es6-shim": "^0.35.3",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
@@ -76,7 +79,8 @@
       "jasmine": true
     },
     "rules": {
-      "linebreak-style": 0
+      "linebreak-style": 0,
+      "object-curly-spacing": [1, "always"]
     },
     "extends": [
       "xo-react/space",
