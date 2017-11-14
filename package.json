@@ -38,7 +38,7 @@
     "eslint-plugin-babel": "^4.0.1",
     "eslint-plugin-react": "^6.10.0",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
-    "gulp": "gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
+    "gulp": "github:gulpjs/gulp#4ed9a4a3275559c73a396eff7e1fde3824951ebb",
     "gulp-filter": "^5.0.0",
     "gulp-hub": "frankwallis/gulp-hub#d461b9c700df9010d0a8694e4af1fb96d9f38bf4",
     "gulp-sass": "^3.1.0",
@@ -80,7 +80,10 @@
     },
     "rules": {
       "linebreak-style": 0,
-      "object-curly-spacing": [1, "always"]
+      "object-curly-spacing": [
+        1,
+        "always"
+      ]
     },
     "extends": [
       "xo-react/space",

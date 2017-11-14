@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, browserHistory} from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
-import {Hello} from './app/hello';
+import { Hello } from './app/hello';
 
 import './index.scss';
 
@@ -12,3 +12,4 @@ ReactDOM.render(
   </Router>,
   document.getElementById('root')
 );
+
