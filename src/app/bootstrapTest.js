@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-export class Hello extends Component {
+module.exports = class BootstrapTest extends React.Component {
   render() {
     return (
       <div className="text-center pt-5">
@@ -38,4 +38,4 @@ export class Hello extends Component {
       </div>
     );
   }
-}
+};

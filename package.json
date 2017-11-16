@@ -3,6 +3,7 @@
     "bootstrap": "^4.0.0-beta.2",
     "classnames": "^2.2.5",
     "es6-shim": "^0.35.3",
+    "firebase": "^4.6.2",
     "jquery": "^3.2.1",
     "popper.js": "^1.12.7",
     "react": "^15.4.2",
@@ -83,6 +84,14 @@
       "object-curly-spacing": [
         1,
         "always"
+      ],
+      "react/jsx-space-before-closing": [
+        0,
+        "always"
+      ],
+      "eol-last": [
+        0,
+        "never"
       ]
     },
     "extends": [
