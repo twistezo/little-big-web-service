@@ -92,6 +92,10 @@
       "eol-last": [
         0,
         "never"
+      ],
+      "react/prop-types": [
+        0,
+        "never"
       ]
     },
     "extends": [
