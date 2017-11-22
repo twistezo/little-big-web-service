@@ -1,6 +1,7 @@
 import React from 'react';
 import PlaygroundChildA from './componentChildA';
 import PlaygroundForm from './form';
+import FirebaseCRUD from './firebaseCRUD';
 
 function ChildB(props) {
   return (
@@ -21,6 +22,8 @@ module.exports = class PlaygroundInheritance extends React.Component {
         <ChildB childText="I'm props of component B" />
         <h2>{'Multiple input testing'}</h2>
         <PlaygroundForm />
+        <h2>{'Firebase CRUD testing'}</h2>
+        <FirebaseCRUD />
       </div>
     );
   }

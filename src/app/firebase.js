@@ -8,6 +8,8 @@ const config = {
   storageBucket: 'little-big-web-service.appspot.com',
   messagingSenderId: '545432469829'
 };
-const firebaseConfig = firebase.initializeApp(config);
 
-export default firebaseConfig;
+firebase.initializeApp(config);
+
+const database = firebase.database();
+export default database;
