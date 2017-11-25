@@ -9,9 +9,22 @@ module.exports = class FirebaseCRUD extends React.Component {
     this.state = {
       userEmail: '',
       userName: '',
-      user: {},
-      users: {}
+      user: {}
     };
+
+    this.testUsers = [
+      {
+        id: 0,
+        email: 'John@gmail.com',
+        name: 'John'
+      },
+      {
+        id: 1,
+        email: 'Adam@gmail.com',
+        name: 'Adam'
+      }
+    ];
+    this.users = [];
 
     this.usersRef = database.ref('users/');
 
@@ -21,7 +34,9 @@ module.exports = class FirebaseCRUD extends React.Component {
 
   componentDidMount() {
     this.readUserByEmail('zxc');
-    this.readAllUsers();
+    this.readAllUsers(this.users);
+    console.log(this.users);
+    console.log(this.testUsers);
   }
 
   handleChange(event) {
@@ -60,34 +75,40 @@ module.exports = class FirebaseCRUD extends React.Component {
     this.usersRef.child(userEmail).remove();
   }
 
-  // FIXME:
-  readAllUsers() {
-    const users = [];
-    this.usersRef.orderByKey().on('child_added', snapshot => {
-      const user = snapshot.val();
-      users.push(user);
+  // readAllUsers(users) {
+  //   this.usersRef.orderByKey().on('child_added', snapshot => {
+  //     users.push(snapshot.val());
+  //   });
+  // }
+
+  readAllUsers(users) {
+    this.usersRef.on('value', snapshot => {
+      snapshot.forEach(child => {
+        users.push({
+          id: child.val().id,
+          email: child.val().email,
+          name: child.val().name
+        });
+      });
     });
-    console.log(users);
-    // this.setState({ users });  // FIXME:
   }
 
-  UserList() {
-    // const users = this.state.users;
-    // console.log(users);
-    const users = [1, 2, 3, 4, 5];
-    const listItems = users.map((user) =>
-      <li key={user}>
-        {user}
-      </li>
+  UsersList(props) {
+    const content = props.users.map(user =>
+      <div key={user.id}>
+        {user.id}, {user.email}, {user.name}
+      </div>
     );
     return (
-      <ul>{listItems}</ul>
+      <div>
+        {content}
+      </div>
     );
   }
 
   render() {
     return (
-      <div className="col-md-6 mx-auto">
+      <div className="col-md-6 mx-auto" >
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="col md-6">
@@ -119,9 +140,9 @@ module.exports = class FirebaseCRUD extends React.Component {
           </p>
         </div>
         <div className="pb-2">
-          {/* {this.state.users[0].email} */}
-          {/* {this.state.users[1].name} */}
-          {/* <this.UserList /> */}
+          <this.UsersList users={this.testUsers} />
+          <this.UsersList users={this.users} />
+          {this.users}
         </div>
       </div >
     );
