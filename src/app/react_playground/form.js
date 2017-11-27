@@ -56,4 +56,4 @@ export default class PlaygroundForm extends React.Component {
       </div >
     );
   }
-};
+}

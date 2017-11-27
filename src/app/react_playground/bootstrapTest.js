@@ -38,4 +38,4 @@ export default class PlaygroundBootstrap extends React.Component {
       </div>
     );
   }
-};
+}

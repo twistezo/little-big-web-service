@@ -27,4 +27,4 @@ export default class PlaygroundInheritance extends React.Component {
       </div>
     );
   }
-};
+}

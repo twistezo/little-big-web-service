@@ -10,4 +10,4 @@ export default class PlaygroundChildA extends React.Component {
       </div>
     );
   }
-};
+}

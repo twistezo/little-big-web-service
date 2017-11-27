@@ -127,4 +127,4 @@ export default class FirebaseCRUD extends React.Component {
       </div >
     );
   }
-};
+}
