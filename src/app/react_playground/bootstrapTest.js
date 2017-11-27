@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-module.exports = class PlaygroundBootstrap extends React.Component {
+export default class PlaygroundBootstrap extends React.Component {
   render() {
     return (
       <div className="text-center pt-5">

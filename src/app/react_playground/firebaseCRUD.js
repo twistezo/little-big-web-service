@@ -3,7 +3,7 @@ import database from '../firebase';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-module.exports = class FirebaseCRUD extends React.Component {
+export default class FirebaseCRUD extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,18 +12,6 @@ module.exports = class FirebaseCRUD extends React.Component {
       user: {}
     };
 
-    this.testUsers = [
-      {
-        id: 0,
-        email: 'John@gmail.com',
-        name: 'John'
-      },
-      {
-        id: 1,
-        email: 'Adam@gmail.com',
-        name: 'Adam'
-      }
-    ];
     this.users = [];
 
     this.usersRef = database.ref('users/');
@@ -33,10 +21,8 @@ module.exports = class FirebaseCRUD extends React.Component {
   }
 
   componentDidMount() {
-    this.readUserByEmail('zxc');
-    this.readAllUsers(this.users);
-    console.log(this.users);
-    console.log(this.testUsers);
+    this.readUserByEmail('zxc'); // for testing
+    this.readAllUsers(this.users); // for testing
   }
 
   handleChange(event) {
@@ -75,12 +61,6 @@ module.exports = class FirebaseCRUD extends React.Component {
     this.usersRef.child(userEmail).remove();
   }
 
-  // readAllUsers(users) {
-  //   this.usersRef.orderByKey().on('child_added', snapshot => {
-  //     users.push(snapshot.val());
-  //   });
-  // }
-
   readAllUsers(users) {
     this.usersRef.on('value', snapshot => {
       snapshot.forEach(child => {
@@ -89,6 +69,7 @@ module.exports = class FirebaseCRUD extends React.Component {
           email: child.val().email,
           name: child.val().name
         });
+        this.setState(users);
       });
     });
   }
@@ -140,9 +121,8 @@ module.exports = class FirebaseCRUD extends React.Component {
           </p>
         </div>
         <div className="pb-2">
-          <this.UsersList users={this.testUsers} />
+          users:
           <this.UsersList users={this.users} />
-          {this.users}
         </div>
       </div >
     );

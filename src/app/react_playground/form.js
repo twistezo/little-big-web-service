@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-module.exports = class PlaygroundForm extends React.Component {
+export default class PlaygroundForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -13,7 +13,7 @@ function ChildB(props) {
   );
 }
 
-module.exports = class PlaygroundInheritance extends React.Component {
+export default class PlaygroundInheritance extends React.Component {
   render() {
     return (
       <div className="text-center pt-5">

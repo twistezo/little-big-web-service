@@ -1,6 +1,6 @@
 import React from 'react';
 
-module.exports = class PlaygroundChildA extends React.Component {
+export default class PlaygroundChildA extends React.Component {
   render() {
     return (
       <div>
