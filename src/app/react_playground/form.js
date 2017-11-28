@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-export default class PlaygroundForm extends React.Component {
+class PlaygroundForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,3 +57,5 @@ export default class PlaygroundForm extends React.Component {
     );
   }
 }
+
+export default PlaygroundForm;

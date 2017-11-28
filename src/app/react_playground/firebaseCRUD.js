@@ -3,7 +3,7 @@ import database from '../firebase';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
-export default class FirebaseCRUD extends React.Component {
+class FirebaseCRUD extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -128,3 +128,5 @@ export default class FirebaseCRUD extends React.Component {
     );
   }
 }
+
+export default FirebaseCRUD;
