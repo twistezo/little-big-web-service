@@ -41,7 +41,6 @@ bower_components
 ### Firebase ###
 .idea
 **/node_modules/*
-**/.firebaserc
 ### Node ###
 # Logs
 logs
