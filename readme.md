@@ -39,3 +39,6 @@ npm run serve:dist
 npm run test // with Karma
 npm run test:auto // with Karma in watch mode
 ```
+
+### Latest version
+https://little-big-web-service.firebaseapp.com/ or https://twistezo.github.io/little-big-web-service/
