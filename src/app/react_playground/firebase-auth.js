@@ -52,9 +52,7 @@ class FirebaseAuth extends React.Component {
           <input value={this.state.password} onChange={this.handleChange} name="password" className="form-control" placeholder="Password" />
         </div>
         {this.state.loggedIn ?
-          <button onClick={this.handleLogout} type="submit" className="btn btn-primary">Log out</button>
-          :
-          <button onClick={this.handleLogin} type="submit" className="btn btn-primary">Log in</button>
+          <button onClick={this.handleLogout} type="submit" className="btn btn-primary">Log out</button> : <button onClick={this.handleLogin} type="submit" className="btn btn-primary">Log in</button>
         }
 
         <div>
