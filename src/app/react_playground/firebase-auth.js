@@ -1,5 +1,5 @@
 import React from 'react';
-import auth from '../firebase';
+import firebase from '../firebase';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
@@ -12,6 +12,7 @@ class FirebaseAuth extends React.Component {
       loggedIn: false
     };
 
+    this.firebaseAuth = firebase.auth();
     this.handleChange = this.handleChange.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -22,7 +23,7 @@ class FirebaseAuth extends React.Component {
   }
 
   handleLogin() {
-    auth.signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
+    this.firebaseAuth.signInWithEmailAndPassword(this.state.email, this.state.password).then(() => {
       this.setState({
         loggedIn: true
       });
@@ -30,7 +31,7 @@ class FirebaseAuth extends React.Component {
   }
 
   handleLogout() {
-    auth.signOut().then(() => {
+    this.firebaseAuth.signOut().then(() => {
       this.setState({
         loggedIn: false
       });
@@ -42,20 +43,16 @@ class FirebaseAuth extends React.Component {
       <div className="col-md-4 mx-auto text-center pt-5">
         <h2>{'firebase-auth testing'}</h2>
         <span>{'Test with email: test@gmail.com pass: qwetest'}</span>
-
-        <div className="form-group">
-          <label>Email address</label>
+        <div className="form-group pt-3">
           <input value={this.state.email} onChange={this.handleChange} name="email" className="form-control" placeholder="Email" />
         </div>
         <div className="form-group">
-          <label>Password</label>
           <input value={this.state.password} onChange={this.handleChange} name="password" className="form-control" placeholder="Password" />
         </div>
         {this.state.loggedIn ?
           <button onClick={this.handleLogout} type="submit" className="btn btn-primary">Log out</button> : <button onClick={this.handleLogin} type="submit" className="btn btn-primary">Log in</button>
         }
-
-        <div>
+        <div className="pt-2">
           <h4>Are you loggedin ?</h4>
           {this.state.loggedIn ?
             <p>{'You are logged'}</p> : <p>{'You are not logged in'}</p>

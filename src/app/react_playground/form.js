@@ -25,25 +25,21 @@ class PlaygroundForm extends React.Component {
 
   render() {
     return (
-      <div className="col-md-6 mx-auto">
+      <div className="col-md-8 mx-auto">
         <form onSubmit={this.handleSubmit}>
           <div className="row">
-            <div className="col md-6">
-              <label>Input A</label>
-            </div>
-            <div className="col md-6">
-              <input name="valueA" type="text" className="form-control" value={this.state.valueA} onChange={this.handleChange} />
+            <div className="col-md-6 mx-auto">
+              <input name="valueA" type="text" className="form-control" value={this.state.valueA} onChange={this.handleChange} placeholder="Input A" />
             </div>
           </div>
           <div className="row">
-            <div className="col md-6">
-              <label>Input B</label>
-            </div>
-            <div className="col md-6">
-              <input name="valueB" type="text" className="form-control" value={this.state.valueB} onChange={this.handleChange} />
+            <div className="col-md-6 mx-auto">
+              <input name="valueB" type="text" className="form-control" value={this.state.valueB} onChange={this.handleChange} placeholder="Input B" />
             </div>
           </div>
-          <input type="submit" className="btn btn-danger" value="Submit" />
+          <div className="pt-2 pb-2">
+            <input type="submit" className="btn btn-danger" value="Submit to console" />
+          </div>
         </form >
         <div className="pb-2">
           <p>

@@ -1,5 +1,5 @@
 import React from 'react';
-import database from '../firebase';
+import firebase from '../firebase';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
@@ -14,14 +14,14 @@ class FirebaseCRUD extends React.Component {
 
     this.users = [];
 
-    this.usersRef = database.ref('users/');
+    this.usersRef = firebase.database().ref('users/');
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.readUserByEmail('zxc'); // for testing
+    this.readUserByEmail('asd'); // for testing
     this.readAllUsers(this.users); // for testing
   }
 
@@ -89,39 +89,35 @@ class FirebaseCRUD extends React.Component {
 
   render() {
     return (
-      <div className="col-md-6 mx-auto" >
+      <div className="col-md-8 mx-auto" >
         <form onSubmit={this.handleSubmit}>
           <div className="row">
-            <div className="col md-6">
-              <label>userEmail</label>
-            </div>
-            <div className="col md-6">
-              <input name="userEmail" type="text" className="form-control" value={this.state.userEmail} onChange={this.handleChange} />
+            <div className="col-md-6 mx-auto">
+              <input name="userEmail" type="text" className="form-control" value={this.state.userEmail} onChange={this.handleChange} placeholder="userEmail" />
             </div>
           </div>
           <div className="row">
-            <div className="col md-6">
-              <label>userName</label>
-            </div>
-            <div className="col md-6">
-              <input name="userName" type="text" className="form-control" value={this.state.userName} onChange={this.handleChange} />
+            <div className="col-md-6 mx-auto">
+              <input name="userName" type="text" className="form-control" value={this.state.userName} onChange={this.handleChange} placeholder="userName" />
             </div>
           </div>
-          <input type="submit" className="btn btn-danger" value="Submit" />
+          <div className="pt-2 pb-2">
+            <input type="submit" className="btn btn-danger" value="Add to DB" />
+          </div>
         </form >
         <div className="pb-2">
           <p>
-            userEmail = {this.state.userEmail}
+            state of userEmail = {this.state.userEmail}
           </p>
           <p>
-            userName = {this.state.userName}
+            state of userName = {this.state.userName}
           </p>
           <p>
             readUserByEmail() = id: {this.state.user.id}, email: {this.state.user.email}, name: {this.state.user.name}
           </p>
         </div>
         <div className="pb-2">
-          users:
+          usersList:
           <this.UsersList users={this.users} />
         </div>
       </div >
