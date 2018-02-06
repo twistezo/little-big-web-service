@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import PlaygroundBootstrap from './app/react_playground/bootstrapTest';
-import PlaygroundInheritance from './app/react_playground/componentParent';
-import FirebaseAuth from './app/react_playground/firebase-auth';
+import Layout from './app/components/layout';
 
 import './index.scss';
 
 ReactDOM.render(
   <div>
-    <PlaygroundBootstrap />
-    <PlaygroundInheritance />
-    <FirebaseAuth />
+    <Layout />
   </div>,
   document.getElementById('root'),
 );

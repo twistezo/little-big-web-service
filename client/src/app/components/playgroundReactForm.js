@@ -1,4 +1,5 @@
 import React from 'react';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
@@ -9,7 +10,6 @@ class PlaygroundForm extends React.Component {
       valueA: '',
       valueB: ''
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,7 +27,7 @@ class PlaygroundForm extends React.Component {
     return (
       <div className="col-md-8 mx-auto">
         <form onSubmit={this.handleSubmit}>
-          <div className="row">
+          <div className="row pb-2">
             <div className="col-md-6 mx-auto">
               <input name="valueA" type="text" className="form-control" value={this.state.valueA} onChange={this.handleChange} placeholder="Input A" />
             </div>
@@ -37,11 +37,11 @@ class PlaygroundForm extends React.Component {
               <input name="valueB" type="text" className="form-control" value={this.state.valueB} onChange={this.handleChange} placeholder="Input B" />
             </div>
           </div>
-          <div className="pt-2 pb-2">
+          <div className="pt-2">
             <input type="submit" className="btn btn-danger" value="Submit to console" />
           </div>
         </form >
-        <div className="pb-2">
+        <div className="pt-2">
           <p>
             state of valueA = {this.state.valueA}
           </p>
