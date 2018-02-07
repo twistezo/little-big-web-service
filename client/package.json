@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "4.0.0-beta.2",
     "classnames": "^2.2.5",
     "es6-shim": "^0.35.3",
     "firebase": "^4.6.2",
@@ -26,6 +26,7 @@
     "babel-loader": "^6.3.2",
     "babel-plugin-istanbul": "^4.0.0",
     "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "browser-sync": "^2.18.8",
@@ -83,20 +84,19 @@
     "rules": {
       "linebreak-style": 0,
       "object-curly-spacing": [
-        1,
-        "always"
+        0
       ],
       "react/jsx-space-before-closing": [
-        0,
-        "always"
+        0
       ],
       "eol-last": [
-        0,
-        "never"
+        1
       ],
       "react/prop-types": [
-        0,
-        "never"
+        1
+      ],
+      "react/forbid-component-props": [
+        1
       ]
     },
     "extends": [
