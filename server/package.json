@@ -1,14 +1,13 @@
 {
-  "name": "todo-node-api",
+  "name": "little-big-web-service-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "author": "twistezo",
+  "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "author": "twistezo",
-  "license": "MIT",
   "devDependencies": {
     "nodemon": "^1.14.12"
   },

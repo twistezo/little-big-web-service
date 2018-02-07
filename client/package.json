@@ -1,4 +1,9 @@
 {
+  "name": "little-big-web-service-client",
+  "version": "1.0.0",
+  "description": "",
+  "author": "twistezo",
+  "license": "MIT",
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",
     "classnames": "^2.2.5",
