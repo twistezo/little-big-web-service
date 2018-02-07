@@ -1,0 +1,5 @@
+client/node_modules
+client/dist
+client/firebase-debug.log
+
+server/node_modules
