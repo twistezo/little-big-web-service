@@ -1,9 +1,0 @@
-language: node.js
-sudo: false
-before_script:
- - cd client
- - npm install
- - npm install gulp-cli -g
-script: 
- - gulp build
-#  - gulp test
