@@ -17,6 +17,7 @@ npm or yarn, gulp-cli, MongoDB, Node.js
 Server:<br/>
 ```
 start MongoDB server: mongod (from path where you installed MongoDB)
+go to server/ and use `npm install or yarn` to build
 start Node.js server: npm run start
 
 Server start as HTTP on port 3000 and as HTTPS on port 8443
