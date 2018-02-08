@@ -104,6 +104,9 @@
       ],
       "react/forbid-component-props": [
         1
+      ],
+      "react/jsx-closing-bracket-location": [
+        1
       ]
     },
     "extends": [
