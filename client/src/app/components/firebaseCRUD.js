@@ -93,12 +93,18 @@ class FirebaseCRUD extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="col-md-6 mx-auto pb-2">
-                <input name="userEmail" type="text" className="form-control" value={this.state.userEmail} onChange={this.handleChange} placeholder="userEmail" />
+                <input
+                  name="userEmail" type="text" className="form-control"
+                  value={this.state.userEmail} onChange={this.handleChange}
+                  placeholder="userEmail" />
               </div>
             </div>
             <div className="row">
               <div className="col-md-6 mx-auto">
-                <input name="userName" type="text" className="form-control" value={this.state.userName} onChange={this.handleChange} placeholder="userName" />
+                <input
+                  name="userName" type="text" className="form-control"
+                  value={this.state.userName} onChange={this.handleChange}
+                  placeholder="userName" />
               </div>
             </div>
             <div className="pt-2 pb-2">

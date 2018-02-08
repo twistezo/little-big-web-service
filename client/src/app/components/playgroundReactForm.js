@@ -29,12 +29,16 @@ class PlaygroundForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="row pb-2">
             <div className="col-md-6 mx-auto">
-              <input name="valueA" type="text" className="form-control" value={this.state.valueA} onChange={this.handleChange} placeholder="Input A" />
+              <input
+                name="valueA" type="text" className="form-control" value={this.state.valueA}
+                onChange={this.handleChange} placeholder="Input A" />
             </div>
           </div>
           <div className="row">
             <div className="col-md-6 mx-auto">
-              <input name="valueB" type="text" className="form-control" value={this.state.valueB} onChange={this.handleChange} placeholder="Input B" />
+              <input
+                name="valueB" type="text" className="form-control" value={this.state.valueB}
+                onChange={this.handleChange} placeholder="Input B" />
             </div>
           </div>
           <div className="pt-2">

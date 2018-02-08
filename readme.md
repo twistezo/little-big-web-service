@@ -18,7 +18,11 @@ Server:<br/>
 ```
 start MongoDB server: mongod (from path where you installed MongoDB)
 start Node.js server: npm run start
-go to: http://localhost:3000/tasks or you can test REST API in Postman
+goto: client/ and use -> gulp serve
+
+alternative ways to test API: 
+ - in browser at http://localhost:3000/users 
+ - in Postman
 ```
 Client:<br/>
 ```

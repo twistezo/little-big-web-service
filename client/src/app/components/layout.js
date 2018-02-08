@@ -13,6 +13,7 @@ import PlaygroundBootstrap from './playgroundBootstrap';
 import PlaygroundInheritance from './PlaygroundInheritance';
 import FirebaseCRUD from './firebaseCRUD';
 import FirebaseAuth from './firebaseAuth';
+import nodeServerREST from './nodeServerREST';
 
 const TabsNavbar = () => (
   <Router>
@@ -30,11 +31,15 @@ const TabsNavbar = () => (
         <li className="nav-item">
           <NavLink className="nav-link" to="/FirebaseAuth">Firebase Auth</NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/nodeServerREST">Node.JS REST</NavLink>
+        </li>
       </ul>
       <Route exact path="/bootstrap" component={PlaygroundBootstrap} />
       <Route path="/react" component={PlaygroundInheritance} />
       <Route path="/firebaseCRUD" component={FirebaseCRUD} />
       <Route path="/FirebaseAuth" component={FirebaseAuth} />
+      <Route path="/nodeServerREST" component={nodeServerREST} />
       <Redirect from="/" to="/bootstrap" />
     </div>
   </Router>

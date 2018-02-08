@@ -9,6 +9,7 @@
     "start": "nodemon server.js"
   },
   "devDependencies": {
+    "cors": "^2.8.4",
     "nodemon": "^1.14.12"
   },
   "dependencies": {
