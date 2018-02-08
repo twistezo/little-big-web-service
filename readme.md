@@ -18,11 +18,12 @@ Server:<br/>
 ```
 start MongoDB server: mongod (from path where you installed MongoDB)
 start Node.js server: npm run start
-goto: client/ and use -> gulp serve
 
-alternative ways to test API: 
+Server start as HTTP on port 3000 and as HTTPS on port 8443
+Alternative ways to test API: 
  - in browser at http://localhost:3000/users 
  - in Postman
+
 ```
 Client:<br/>
 ```

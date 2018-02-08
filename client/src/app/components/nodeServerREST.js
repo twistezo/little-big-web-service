@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'https://localhost:8443'
 });
 
 class NodeServerREST extends React.Component {
