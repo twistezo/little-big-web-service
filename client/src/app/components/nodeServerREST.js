@@ -14,12 +14,15 @@ class NodeServerREST extends React.Component {
     super(props);
     this.state = {
       serverStatus: false,
-      userId: '',
+      readUserId: '',
       user: {},
-      users: []
+      users: [],
+      createUserName: '',
+      createUserAge: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleReadUser = this.handleReadUser.bind(this);
+    this.handleCreateUser = this.handleCreateUser.bind(this);
   }
 
   componentDidMount() {
@@ -59,9 +62,15 @@ class NodeServerREST extends React.Component {
   readUsers() {
     axiosInstance.get('/users').then(response => {
       this.setState({ users: response.data, serverStatus: true });
+      return response.data;
     }).catch(error => {
       console.log(error);
     });
+  }
+
+  handleReadUser(event) {
+    this.readUserById(this.state.readUserId);
+    event.preventDefault();
   }
 
   readUserById(id) {
@@ -72,9 +81,18 @@ class NodeServerREST extends React.Component {
     });
   }
 
-  handleReadUser(event) {
-    this.readUserById(this.state.userId);
+  handleCreateUser(event) {
+    this.createUser(this.state.createUserName, this.state.createUserAge);
     event.preventDefault();
+  }
+
+  createUser(name, age) {
+    axiosInstance.post('/users/', {
+      name,
+      age
+    }).catch(error => {
+      console.log(error);
+    });
   }
 
   ServerStatus(props) {
@@ -110,12 +128,36 @@ class NodeServerREST extends React.Component {
       <form onSubmit={props.onSubmit}>
         <div className="row pb-2">
           <input
-            name="userId" type="text" className="form-control"
+            name="readUserId" type="text" className="form-control"
             value={props.userId} onChange={props.onHandleChange}
-            placeholder="Type User Id" />
+            placeholder="Type user id" />
         </div>
         <div className="pt-2 pb-2">
           <input type="submit" className="btn btn-danger" value="Show" />
+        </div>
+      </form>
+    );
+  }
+
+  CreateUserForm(props) {
+    return (
+      <form onSubmit={props.onSubmit}>
+        <div className="row pb-2">
+          <div className="col-md-6 mx-auto pb-2">
+            <input
+              name="createUserName" type="text" className="form-control"
+              value={props.userName} onChange={props.onHandleChange}
+              placeholder="Type user name" />
+          </div>
+          <div className="col-md-6 mx-auto pb-2">
+            <input
+              name="createUserAge" type="text" className="form-control"
+              value={props.userAge} onChange={props.onHandleChange}
+              placeholder="Type user age" />
+          </div>
+        </div>
+        <div className="pt-2 pb-2">
+          <input type="submit" className="btn btn-danger" value="Add" />
         </div>
       </form>
     );
@@ -138,7 +180,7 @@ class NodeServerREST extends React.Component {
           </div>
           <div>
             <this.ReadUserForm
-              onSubmit={this.handleReadUser} userId={this.state.userId}
+              onSubmit={this.handleReadUser} userId={this.state.readUserId}
               onHandleChange={this.handleChange} />
             <div>
               <p>
@@ -152,6 +194,12 @@ class NodeServerREST extends React.Component {
               </p>
             </div>
           </div>
+          <div className="pb-2">
+            <h4>{'Create new user'}</h4>
+          </div>
+          <this.CreateUserForm
+            onSubmit={this.handleCreateUser} userName={this.state.createUserName}
+            userAge={this.state.createUserAge} onHandleChange={this.handleChange} />
         </div>
       </div >
     );
