@@ -6,79 +6,44 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://localhost:8443'
+  baseURL: 'https://localhost:8443' // HTTPS
 });
 
 class NodeServerREST extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      serverStatus: false,
-      readUserId: '',
-      user: {},
-      users: [],
+      isServerActive: false,
+      shouldUpdateUsersFromAPI: true,
       createUserName: '',
-      createUserAge: ''
+      createUserAge: '',
+      readUserId: '',
+      readUser: {},
+      readUsers: [],
+      updateUserId: '',
+      updateUserName: '',
+      updateUserAge: '',
+      deleteUserId: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleReadUser = this.handleReadUser.bind(this);
     this.handleCreateUser = this.handleCreateUser.bind(this);
+    this.handleUpdateUser = this.handleUpdateUser.bind(this);
+    this.handleDeleteUser = this.handleDeleteUser.bind(this);
   }
 
   componentDidMount() {
-    this.checkServerStatus();
-    this.readUsers();
+    this.readUsersFromAPI();
+  }
+
+  componentDidUpdate() {
+    if (this.state.shouldUpdateUsersFromAPI === true) {
+      this.readUsersFromAPI();
+    }
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-  }
-
-  checkServerStatus() {
-    axiosInstance.get('users/').catch(error => {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log('error.response.data' + error.response.data);
-        console.log('error.response.status' + error.response.status);
-        console.log('error.response.headers' + error.response.headers);
-        this.setState({ serverStatus: false });
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in node.js
-        console.log('error.request' + error.request);
-        this.setState({ serverStatus: false });
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log('Else error.message', error.message);
-        this.setState({ serverStatus: false });
-      }
-      console.log('error.config' + error.config);
-      this.setState({ serverStatus: false });
-    });
-  }
-
-  readUsers() {
-    axiosInstance.get('/users').then(response => {
-      this.setState({ users: response.data, serverStatus: true });
-      return response.data;
-    }).catch(error => {
-      console.log(error);
-    });
-  }
-
-  handleReadUser(event) {
-    this.readUserById(this.state.readUserId);
-    event.preventDefault();
-  }
-
-  readUserById(id) {
-    axiosInstance.get('/users/' + id).then(response => {
-      this.setState({ user: response.data });
-    }).catch(error => {
-      console.log(error);
-    });
   }
 
   handleCreateUser(event) {
@@ -86,10 +51,73 @@ class NodeServerREST extends React.Component {
     event.preventDefault();
   }
 
+  handleReadUser(event) {
+    this.readUserById(this.state.readUserId);
+    event.preventDefault();
+  }
+
+  handleUpdateUser(event) {
+    this.updateUserById(this.state.updateUserId, this.state.updateUserName,
+      this.state.updateUserAge);
+    event.preventDefault();
+  }
+
+  handleDeleteUser(event) {
+    this.deleteUserById(this.state.deleteUserId);
+    event.preventDefault();
+  }
+
   createUser(name, age) {
     axiosInstance.post('/users/', {
-      name,
-      age
+      name, age
+    }).then(() => {
+      this.setState({ shouldUpdateUsersFromAPI: true, createUserName: '', createUserAge: '' });
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  readUsersFromAPI() {
+    axiosInstance.get('/users').then(response => {
+      this.setState({ readUsers: response.data, isServerActive: true, shouldUpdateUsersFromAPI: false });
+    }).catch(error => {
+      this.setState({ isServerActive: false });
+      if (error.response) {
+        console.log('error.response.data: ' + error.response.data + '\nerror.response.status: ' +
+          error.response.status + '\nerror.response.headers: ' + error.response.headers);
+      } else if (error.request) {
+        console.log('error.request: ' + error.request);
+      } else {
+        console.log('Else error.message: ', error.message);
+      }
+      console.log('error.config: ' + error.config);
+    });
+  }
+
+  readUserById(id) {
+    axiosInstance.get('/users/' + id).then(response => {
+      this.setState({ readUser: response.data, readUserId: '' });
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  updateUserById(id, name, age) {
+    axiosInstance.put('/users/' + id, {
+      name, age
+    }).then(() => {
+      this.setState({
+        updateUserId: '', updateUserName: '',
+        updateUserAge: '', shouldUpdateUsersFromAPI: true
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  deleteUserById(id) {
+    axiosInstance.delete('/users/' + id).then(() => {
+      this.setState({ shouldUpdateUsersFromAPI: true, deleteUserId: '' });
     }).catch(error => {
       console.log(error);
     });
@@ -107,7 +135,7 @@ class NodeServerREST extends React.Component {
     }
   }
 
-  UsersTable(data) {
+  UsersTable(props) {
     const columns = [{
       dataField: '_id',
       text: 'ID'
@@ -119,23 +147,7 @@ class NodeServerREST extends React.Component {
       text: 'Age'
     }];
     return (
-      <BootstrapTable keyField="_id" data={data.data} columns={columns} />
-    );
-  }
-
-  ReadUserForm(props) {
-    return (
-      <form onSubmit={props.onSubmit}>
-        <div className="row pb-2">
-          <input
-            name="readUserId" type="text" className="form-control"
-            value={props.userId} onChange={props.onHandleChange}
-            placeholder="Type user id" />
-        </div>
-        <div className="pt-2 pb-2">
-          <input type="submit" className="btn btn-danger" value="Show" />
-        </div>
-      </form>
+      <BootstrapTable keyField="_id" data={props.data} columns={columns} />
     );
   }
 
@@ -157,7 +169,73 @@ class NodeServerREST extends React.Component {
           </div>
         </div>
         <div className="pt-2 pb-2">
-          <input type="submit" className="btn btn-danger" value="Add" />
+          <input type="submit" className="btn btn-danger" value="Create" />
+        </div>
+      </form>
+    );
+  }
+
+  ReadUserForm(props) {
+    return (
+      <form onSubmit={props.onSubmit}>
+        <div className="row pb-2">
+          <div className="col-md-10 mx-auto pb-2">
+            <input
+              name="readUserId" type="text" className="form-control"
+              value={props.userId} onChange={props.onHandleChange}
+              placeholder="Type user id" />
+          </div>
+        </div>
+        <div className="pt-2 pb-2">
+          <input type="submit" className="btn btn-danger" value="Read" />
+        </div>
+      </form>
+    );
+  }
+
+  UpdateUserForm(props) {
+    return (
+      <form onSubmit={props.onSubmit}>
+        <div className="row pb-2">
+          <div className="col-md-6 mx-auto pb-2">
+            <input
+              name="updateUserId" type="text" className="form-control"
+              value={props.userId} onChange={props.onHandleChange}
+              placeholder="Type user Id" />
+          </div>
+          <div className="col-md-6 mx-auto pb-2">
+            <input
+              name="updateUserName" type="text" className="form-control"
+              value={props.userName} onChange={props.onHandleChange}
+              placeholder="Type user name" />
+          </div>
+          <div className="col-md-6 mx-auto pb-2">
+            <input
+              name="updateUserAge" type="text" className="form-control"
+              value={props.userAge} onChange={props.onHandleChange}
+              placeholder="Type user age" />
+          </div>
+        </div>
+        <div className="pt-2 pb-2">
+          <input type="submit" className="btn btn-danger" value="Update" />
+        </div>
+      </form>
+    );
+  }
+
+  DeleteUserForm(props) {
+    return (
+      <form onSubmit={props.onSubmit}>
+        <div className="row pb-2">
+          <div className="col-md-10 mx-auto pb-2">
+            <input
+              name="deleteUserId" type="text" className="form-control"
+              value={props.userId} onChange={props.onHandleChange}
+              placeholder="Type user id" />
+          </div>
+        </div>
+        <div className="pt-2 pb-2">
+          <input type="submit" className="btn btn-danger" value="Delete" />
         </div>
       </form>
     );
@@ -169,37 +247,52 @@ class NodeServerREST extends React.Component {
         <div className="col-md-8 mx-auto">
           <div className="pb-2">
             <h4>{'Read data from Node.JS RESTful API'}</h4>
-            <this.ServerStatus status={this.state.serverStatus} />
+            <this.ServerStatus status={this.state.isServerActive} />
             <h6>{'If not responding check readme on github'}</h6>
           </div>
+          <hr />
           <div className="pb-2">
-            <this.UsersTable data={this.state.users} />
+            <h4>{'Users from server API'}</h4>
           </div>
           <div className="pb-2">
-            <h4>{'Read user by Id'}</h4>
+            <this.UsersTable data={this.state.readUsers} />
+          </div>
+          <hr />
+          <div className="pb-2">
+            <h4>{'Create user'}</h4>
+          </div>
+          <this.CreateUserForm
+            onSubmit={this.handleCreateUser} userName={this.state.createUserName}
+            userAge={this.state.createUserAge} onHandleChange={this.handleChange} />
+          <hr />
+          <div className="pb-2">
+            <h4>{'Read user'}</h4>
           </div>
           <div>
             <this.ReadUserForm
               onSubmit={this.handleReadUser} userId={this.state.readUserId}
               onHandleChange={this.handleChange} />
             <div>
-              <p>
-                ID: {this.state.user._id}
-              </p>
-              <p>
-                Name: {this.state.user.name}
-              </p>
-              <p>
-                Age: {this.state.user.age}
-              </p>
+              <p>ID: {this.state.readUser._id}</p>
+              <p>Name: {this.state.readUser.name}</p>
+              <p>Age: {this.state.readUser.age}</p>
             </div>
           </div>
+          <hr />
           <div className="pb-2">
-            <h4>{'Create new user'}</h4>
+            <h4>{'Update user'}</h4>
           </div>
-          <this.CreateUserForm
-            onSubmit={this.handleCreateUser} userName={this.state.createUserName}
-            userAge={this.state.createUserAge} onHandleChange={this.handleChange} />
+          <this.UpdateUserForm
+            onSubmit={this.handleUpdateUser} userId={this.state.updateUserId}
+            userName={this.state.updateUserName} userAge={this.state.updateUserAge}
+            onHandleChange={this.handleChange} />
+          <hr />
+          <div className="pb-2">
+            <h4>{'Delete user'}</h4>
+          </div>
+          <this.DeleteUserForm
+            onSubmit={this.handleDeleteUser} userId={this.state.deleteUserId}
+            onHandleChange={this.handleChange} />
         </div>
       </div >
     );
