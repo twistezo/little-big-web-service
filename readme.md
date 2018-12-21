@@ -6,7 +6,7 @@ Currently it is a playground/draft for Node.js + MongoDB RESTful API server and 
 Client uses two databases for testing: MongoDB from server and Firebase from cloud.
 
 ### Tools
-Node.js, Express, MongoDB, React, Bootstrap, Firebase, Webpack, Gulp, Babel, npm, Travis CI
+Node.js, Express, MongoDB, React, Bootstrap, Firebase, Webpack, Gulp, Babel
 
 ### Requirements
 npm or yarn, gulp-cli, MongoDB, Node.js
